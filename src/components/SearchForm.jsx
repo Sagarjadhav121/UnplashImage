@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { gloabalContext } from "../utils";
 
 const SearchForm = () => {
-  const [inputValue, setInputValue] = useState();
+  const { setSearchTerm } = gloabalContext();
+  // const [inputValue, setInputValue] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(inputValue);
     const searchValue = e.target.elements.search.value;
     if (!searchValue) return;
-    console.log(searchValue);
+    setSearchTerm(searchValue);
   };
   return (
     <form className="search-form" onSubmit={handleSubmit}>

@@ -1,16 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-const url =
-  "https://api.unsplash.com/search/photos?client_id=jRbk11-Caq7WuC364xxH5bZ8EHf5RGGTTfW8WegYt38&query=cat";
+import { gloabalContext } from "../utils";
+const apiKey = import.meta.env.VITE_API_KEY;
+const url = `https://api.unsplash.com/search/photos?client_id=${apiKey}`;
 const Gallery = () => {
+  const { searchTerm } = gloabalContext();
+
   const response = useQuery({
-    queryKey: ["images"],
+    queryKey: ["images", searchTerm],
     queryFn: async () => {
-      const result = await axios.get(url);
+      const result = await axios.get(`${url}&query=${searchTerm}`);
       return result.data;
     },
   });
+
   if (response.isLoading) {
     return (
       <section className="image-container">
