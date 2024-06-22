@@ -13,7 +13,7 @@ const ContextProvider = ({ children }) => {
     } else {
       body.classList.remove("dark-theme");
     }
-    console.log("1221");
+    // body.classList.toggle("dark-theme", !isDarkTheme);
   };
   return (
     <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
